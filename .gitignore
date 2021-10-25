@@ -1,0 +1,23 @@
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# content below from: https://github.com/github/gitignore/blob/master/Global/macOS.gitignore
+# General
+.DS_Store
+
+# Folder config file
+[Dd]esktop.ini
+
+
+# Windows shortcuts
+*.lnk
+
+##
+## Visual Studio Code
+##
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
