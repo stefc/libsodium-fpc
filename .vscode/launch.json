@@ -1,0 +1,11 @@
+{
+    "configurations": [
+    {
+        "type": "by-gdb",
+        "request": "launch",
+        "name": "Launch(gdb)",
+        "program": "bin/NaClTest",
+        "cwd": "${workspaceRoot}"
+    }
+    ]
+}

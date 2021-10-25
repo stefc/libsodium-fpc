@@ -1,0 +1,32 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build",
+            "type": "shell",
+            "command": "fpc -g NaClTest.pas -FEbin -Fl/usr/local/lib",
+            "problemMatcher": [
+                {
+                    "owner": "fpc",
+                    "source": "fpc",
+                    "pattern": [
+                    {
+                        "column": 3,
+                        "file": 1,
+                        "line": 2,
+                        "code": 4,
+                        "message": 4,
+                        "regexp": "^(.+)\\((\\d+),(\\d+)\\) Error: (.+)$"
+                    }
+                    ]
+                }
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
