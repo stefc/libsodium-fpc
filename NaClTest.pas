@@ -18,9 +18,6 @@ function crypto_scalarmult_curve25519(q:PAnsiChar; const n:PAnsiChar; const p:PA
 function crypto_scalarmult_curve25519_base(q:PAnsiChar; const n:PAnsiChar):Integer; 
   cdecl; external;
 
-
-
-
 const 
   KEY_SIZE = 32;
 
@@ -45,11 +42,9 @@ const
     $1c, $2f, $8b, $27, $ff, $88, $e0, $eb);
 
 // Datenarray in Hex-String umwandeln
+function toHex(data:array of Byte): String; 
 
-
-function toHex( data : array of Byte) : String; 
-
-  function ByteToHex(b:byte):shortstring;
+  function ByteToHex(b:Byte):ShortString;
   const 
     Digits:array[0..15] of char='0123456789ABCDEF';
   begin
@@ -59,23 +54,15 @@ function toHex( data : array of Byte) : String;
   var value : Byte;
 
 begin 
-    Result := '';
-    for value in data do 
-      Result := Result + ByteToHex(value);
+  Result := '';
+  for value in data do 
+    Result := Result + ByteToHex(value);
 end; 
 
-function createPublicKey(privKey : array of byte) : TKey;
+function createPublicKey(privKey: Array of Byte): TKey;
 begin
-  FillChar(Result, KEY_SIZE, $be);
   crypto_scalarmult_curve25519_base(@Result, PAnsiChar(@privKey[0]));
 end;
-
-// func createPublicKey(privKey: [UInt8]) -> [UInt8] {
-//     var mypublic = [UInt8](count: KEY_SIZE, repeatedValue: 0)
-    
-//     crypto_scalarmult_curve25519_base(&mypublic, privKey)
-//     return mypublic
-// }
 
 
 var 
