@@ -1,7 +1,5 @@
 program NaClTest;
 
-{$mode objfpc}
-
 {$linklib libsodium.23.dylib}
 
 // brew install fpc
@@ -10,7 +8,9 @@ program NaClTest;
 
 // brew link --overwrite fpc
 
-// fpc NaClTest -FEbin -Fl/usr/local/lib
+// fpc NaClTest -Mobjfpc -FEbin -Fl/usr/local/lib
+
+uses yProcs;
 
 function crypto_scalarmult_curve25519(q:PAnsiChar; const n:PAnsiChar; const p:PAnsiChar):Integer; 
   cdecl; external;
@@ -40,24 +40,6 @@ const
     $79, $e1, $7f, $8b, $83, $80, $0e, $e6, 
     $6f, $3b, $b1, $29, $26, $18, $b6, $fd, 
     $1c, $2f, $8b, $27, $ff, $88, $e0, $eb);
-
-// Datenarray in Hex-String umwandeln
-function toHex(data:array of Byte): String; 
-
-  function ByteToHex(b:Byte):ShortString;
-  const 
-    Digits:array[0..15] of char='0123456789ABCDEF';
-  begin
-    Result := digits[b shr 4]+digits[b and $0F];
-  end;
-
-  var value : Byte;
-
-begin 
-  Result := '';
-  for value in data do 
-    Result := Result + ByteToHex(value);
-end; 
 
 function createPublicKey(privKey: Array of Byte): TKey;
 begin

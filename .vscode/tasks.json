@@ -6,7 +6,7 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "fpc -g NaClTest.pas -FEbin -Fl/usr/local/lib",
+            "command": "fpc -g NaClTest.pas -Mobjfpc -FEbin -Fl/usr/local/lib",
             "problemMatcher": [
                 {
                     "owner": "fpc",
