@@ -10,19 +10,12 @@ program NaClTest;
 
 // fpc NaClTest -Mobjfpc -FEbin -Fl/usr/local/lib
 
-uses yProcs;
+// mkdir bin
+// cd bin
+// rm -rf 
+// cmake ..
 
-function crypto_scalarmult_curve25519(q:PAnsiChar; const n:PAnsiChar; const p:PAnsiChar):Integer; 
-  cdecl; external;
-
-function crypto_scalarmult_curve25519_base(q:PAnsiChar; const n:PAnsiChar):Integer; 
-  cdecl; external;
-
-const 
-  KEY_SIZE = 32;
-
-type
-  TKey = Array[0..KEY_SIZE-1] of Byte; 
+uses yProcs, libSodium;
 
 const 
   // Sender's Key
@@ -41,17 +34,18 @@ const
     $6f, $3b, $b1, $29, $26, $18, $b6, $fd, 
     $1c, $2f, $8b, $27, $ff, $88, $e0, $eb);
 
-function createPublicKey(privKey: Array of Byte): TKey;
-begin
-  crypto_scalarmult_curve25519_base(@Result, PAnsiChar(@privKey[0]));
-end;
-
-
 var 
+  privKey, 
   pubAliceKey,
   pubBobKey : TKey;
 
+
+
 begin
+  privKey := createPrivateKey();
+  writeln('A random new private Key:');
+  writeln( ToHex( privKey ));
+
   writeln('Alice''s Priv Key:');
   writeln( ToHex( aliceSecret ));
   writeln('Bob''s Priv Key:');

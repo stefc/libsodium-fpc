@@ -12,4 +12,17 @@ brew link --overwrite fpc
 
 brew install libsodium
 
+## CMake 
 
+
+### Recreate CMake Files
+
+cd ./bin
+rm -rf *
+cmake ..
+
+
+### Build Program 
+
+cd ./bin
+cmake --build .
